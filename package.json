@@ -5,16 +5,21 @@
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
+    "@testing-library/react-hooks": "^3.3.0",
     "@testing-library/user-event": "^7.1.2",
     "@types/jest": "^26.0.4",
     "@types/node": "^14.0.22",
+    "@types/qs": "^6.9.3",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
     "antd": "^4.4.2",
     "axios": "^0.19.2",
+    "qs": "^6.9.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-test-renderer": "^16.13.1",
     "typescript": "^3.9.6"
   },
   "scripts": {
@@ -23,6 +28,7 @@
     "test:watch": "react-scripts test",
     "test": "react-scripts test --watchAll=false --silent",
     "eject": "react-scripts eject",
+    "lint:fix": "eslint --ext js,ts,tsx src --fix",
     "lint": "eslint --ext js,ts,tsx src"
   },
   "eslintConfig": {

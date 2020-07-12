@@ -1,8 +1,11 @@
 import React from 'react';
+import SpotifyAuthProvider from "./context/SpotifyAuthProvider";
 
 function App() {
   return (
-    <span>App</span>
+    <SpotifyAuthProvider handleRedirect={(url) => window.location.replace(url)}>
+      <div data-testid="app" />
+    </SpotifyAuthProvider>
   );
 }
 
