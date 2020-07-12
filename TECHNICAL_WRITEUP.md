@@ -13,7 +13,8 @@
 
 ### Assumptions
 * Spotify requests happens on key press
-* We will need a way to set the API key for each environment (Maybe OOS for this brief)
+* Applicatio should be deployable to multiple environments
+*   We will need a way to set the API key for each environment (Maybe OOS for this brief)
 
 ### Create repo
 Private repo has been created here: https://github.com/Ollie-H/music-venture-code-test. Will update to public once complete.
