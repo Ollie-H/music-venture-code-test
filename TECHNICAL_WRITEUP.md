@@ -4,7 +4,7 @@
 
 * [x] Create repo
 * [x] Decide on technical selections for application & testing framework
-* [ ] Bootstrap application with Typescript & Ant design
+* [x] Bootstrap application with Typescript & Ant design
 * [ ] Create account for spotify web API
 * [ ] Create technical design plan / discuss assumptions made based on brief
 * [ ] Build application with tests
