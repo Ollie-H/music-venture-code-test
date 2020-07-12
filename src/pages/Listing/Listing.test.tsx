@@ -1,7 +1,25 @@
 import React from "react";
 import Listing from "./Listing";
-import { render } from "@testing-library/react";
+import { render, fireEvent, wait } from "@testing-library/react";
+import useFetchSpotifySearch from "../../hooks/useFetchSpotifySearch";
+import { Track } from "../../types/spotifyTrack";
 
+jest.useFakeTimers();
+jest.mock("../../hooks/useFetchSpotifySearch");
+
+(useFetchSpotifySearch as jest.Mock).mockImplementation(() => ({
+  data: []
+}));
+
+const mockTrack: Track = {
+  id: "1",
+  name: "Track name",
+  artist: "Artist name",
+  duration_ms: 100,
+  cover_art: 'http://test.com'
+}
+
+const mockFetch = jest.fn();
 
 describe("Listing", () => {
 
@@ -23,5 +41,42 @@ describe("Listing", () => {
     // Act
     // Assert
     expect(getByTestId('listing-page-search')).toBeInTheDocument();
+  });
+
+  it("Should call search on keypress", async () => {
+    // Arrange
+    const mockSearchTerm = "test";
+    (useFetchSpotifySearch as jest.Mock).mockImplementation(() => ({
+      fetch: mockFetch,
+      data: []
+    }));
+    const { getByTestId } = render(<Listing />);
+    // Act
+    fireEvent.change(getByTestId('listing-page-search'), { target: { value: mockSearchTerm } })
+    
+    jest.runAllTimers();
+
+    await wait();
+    // Assert
+    expect(mockFetch).toBeCalledWith(mockSearchTerm);
+  });
+
+
+  it("Should display data", async () => {
+    // Arrange
+    (useFetchSpotifySearch as jest.Mock).mockImplementation(() => ({
+      data: [mockTrack]
+    }));
+    const { getByTestId, getByAltText } = render(<Listing />);
+    // Act
+    await wait();
+    // Assert
+    expect(getByTestId('search-list-item-' + mockTrack.id)).toBeInTheDocument();
+    expect(getByTestId('search-list-item-' + mockTrack.id + '-artist')).toBeInTheDocument();
+    expect(getByTestId('search-list-item-' + mockTrack.id + '-artist')).toHaveTextContent(mockTrack.artist);
+    expect(getByTestId('search-list-item-' + mockTrack.id + '-name')).toBeInTheDocument();
+    expect(getByTestId('search-list-item-' + mockTrack.id + '-name')).toHaveTextContent(mockTrack.name);
+    expect(getByAltText(mockTrack.name + ' cover image')).toBeInTheDocument();
+    expect(getByAltText(mockTrack.name + ' cover image')).toHaveAttribute('src', mockTrack.cover_art);
   });
 });

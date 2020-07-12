@@ -6,6 +6,7 @@ export default (spotifyResponse?: SpotifySearchResponse): Track[] | undefined =>
   }
 
   return spotifyResponse.tracks.items.map((track) => ({
+    id: track.id,
     name: track.name,
     artist: track.artists.reduce((acc, artist) => acc ? acc + `, ${artist.name}` : artist.name, ""),
     duration_ms: track.duration_ms,

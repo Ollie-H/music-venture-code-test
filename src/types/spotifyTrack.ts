@@ -7,6 +7,7 @@ export interface SpotifyCoverArt {
 }
 
 export interface SpotifyTrack {
+  id: string;
   name: string;
   duration_ms: number;
   artists: SpotifyArtist[];
@@ -23,6 +24,7 @@ export interface SpotifySearchResponse {
 }
 
 export interface Track {
+  id: string;
   name: string;
   artist: string;
   cover_art: string;
