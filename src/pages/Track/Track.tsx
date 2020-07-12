@@ -41,7 +41,7 @@ const Track: React.SFC = () => {
         </Row>
         <Row>
           <Col span={12}>
-            <img style={{ width: '100%', border: "1px solid #f0f0f0" }} src={searchFetch.data?.cover_art} alt={`${searchFetch.data?.name} cover image`}  />
+            <img style={{ width: '100%', border: "1px solid #f0f0f0" }} src={searchFetch.data?.cover_art} alt={`${searchFetch.data?.name} cover`}  />
           </Col>
           <Col span={12}>
             <Typography.Paragraph style={{ paddingLeft: '24px' }}> 
