@@ -2,7 +2,6 @@ import getSpotifyAuthToken from "../utils/getSpotifyAuthToken";
 import { SpotifyAccessToken } from "../types/spotifyAuth";
 
 const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
 const MOCK_TOKEN_STORE: SpotifyAccessToken = { access_token: 'x', expires: 3000 };
 
 

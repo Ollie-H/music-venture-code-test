@@ -2,8 +2,10 @@ import React from "react";
 import useFetchSpotifySearch from "../../hooks/useFetchSpotifySearch";
 import useDebouncedEffect from "../../hooks/useDebouncedEffect";
 import { Input, Row, Col, Typography, List, Avatar, Spin } from 'antd';
+import { useHistory } from "react-router-dom";
 
 const Listing: React.SFC = () => {
+  const history = useHistory();
   const searchFetch = useFetchSpotifySearch();
   const [searchTerm, setSearchTerm] = React.useState<string>();
   
@@ -30,7 +32,7 @@ const Listing: React.SFC = () => {
           data-testid="search-result-list"
           dataSource={searchFetch.data}
           renderItem={item => (
-            <List.Item key={item.id} data-testid={`search-list-item-${item.id}`}>
+            <List.Item key={item.id} data-testid={`search-list-item-${item.id}`} onClick={() => history.push(`/${item.id}`)}>
               <List.Item.Meta
                 avatar={
                   <Avatar alt={`${item.name} cover image`} shape="square" src={item.cover_art} size={60} />
