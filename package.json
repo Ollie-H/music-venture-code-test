@@ -20,8 +20,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:watch": "react-scripts test",
+    "test": "react-scripts test --watchAll=false --silent",
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext js,ts,tsx src"
   },
   "eslintConfig": {
     "extends": "react-app"
