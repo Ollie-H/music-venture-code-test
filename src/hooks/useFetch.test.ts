@@ -42,20 +42,6 @@ describe("useTextField", () => {
     expect(result.current.fetch).toBeInstanceOf(Function);
   });
 
-
-  it("should display loading state with no error or data", async () => {
-    // Arrange
-    (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockResponse });
-    // Act 
-    const { result, wait } = renderHook(() => useFetch<MockResponse>());
-    act(() => {
-      result.current.fetch(MOCK_URL);
-    });
-    await wait(() => result.current.loading === true);
-    // Assert 
-    expect(result.current.loading).toEqual(true);
-  });
-
   it("should return data and state should update accordingly", async () => {
     // Arrange
     (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockResponse });
