@@ -13,7 +13,7 @@
 
 ### Assumptions
 * Spotify requests happens on key press
-* Applicatio should be deployable to multiple environments
+* Application should be deployable to multiple environments
 *   We will need a way to set the API key for each environment (Maybe OOS for this brief)
 
 ### Create repo
