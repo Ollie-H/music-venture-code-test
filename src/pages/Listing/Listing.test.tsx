@@ -12,6 +12,9 @@ jest.mock("../../hooks/useFetchSpotifySearch");
 jest.mock("react-router-dom", () => ({
   useHistory: () => ({
     push: mockHistoryPush,
+    location: {
+      search: '?searchTerm=test'
+    }
   }),
 }));
 
@@ -88,9 +91,7 @@ describe("Listing", () => {
     expect(getByAltText(mockTrack.name + ' cover image')).toHaveAttribute('src', mockTrack.cover_art);
   });
 
-
-
-  it("Should display data", async () => {
+  it("Should navigate to track on click", async () => {
     // Arrange
     (useFetchSpotifySearch as jest.Mock).mockImplementation(() => ({
       data: [mockTrack]
@@ -100,6 +101,6 @@ describe("Listing", () => {
     fireEvent.click(getByTestId('search-list-item-' + mockTrack.id));
     await wait();
     // Assert
-    expect(mockHistoryPush).toHaveBeenCalledWith("/" + mockTrack.id);
+    expect(mockHistoryPush).toHaveBeenCalledWith("/tracks/" + mockTrack.id + "?searchTerm=test");
   });
 });

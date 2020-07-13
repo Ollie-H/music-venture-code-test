@@ -62,17 +62,17 @@ describe("Track", () => {
     expect(getByTestId('track-artist')).toHaveTextContent(mockTrack.artist);
     expect(getByTestId('track-name')).toHaveTextContent(mockTrack.name);
     expect(getByTestId('track-duration')).toHaveTextContent('1:30');
-    expect(getByAltText(mockTrack.name + ' cover image')).toHaveAttribute('src', mockTrack.cover_art);
+    expect(getByAltText(mockTrack.name + ' cover')).toHaveAttribute('src', mockTrack.cover_art);
   });
 
   it("Should navigate back to results when back is clicked", async () => {
     // Arrange
-    const { getByTestId, getByAltText } = render(<TrackPage />);
+    const { getByTestId } = render(<TrackPage />);
     // Act
     await wait();
     fireEvent.click(getByTestId('track-back-button'));
     // Assert
-    expect(mockHistoryPush).toHaveBeenCalledWith("/");
+    expect(mockHistoryPush).toHaveBeenCalledWith('/tracks');
   });
 
 });

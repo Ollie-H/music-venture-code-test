@@ -32,7 +32,10 @@ const Track: React.SFC = () => {
         <Row style={{ paddingBottom: '24px' }}>
           <Col xs={20} md={16} lg={12}>
             <Breadcrumb>
-            <Breadcrumb.Item href="" onClick={() => history.push(`/`)} data-testid="track-back-button">
+            <Breadcrumb.Item href="" onClick={(e) => {
+                e.preventDefault();
+                history.push('/tracks'+window.location.search);
+            }} data-testid="track-back-button">
               <ArrowLeftOutlined />
               <span>Back</span>
             </Breadcrumb.Item>

@@ -1,4 +1,4 @@
 export interface SpotifyAccessToken {
   access_token: string;
-  expires: number;
+  expires_in: any;
 }
