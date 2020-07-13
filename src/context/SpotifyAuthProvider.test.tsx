@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from "@testing-library/react";
 import SpotifyAuthContext from "./SpotifyAuthContext";
-import getSpotifyAuthToken from "../utils/getSpotifyAuthToken";
+import spotifyAuth from "../utils/spotifyAuth";
 import SpotifyAuthProvider from "./SpotifyAuthProvider";
 
-jest.mock("../utils/getSpotifyAuthToken");
+jest.mock("../utils/spotifyAuth");
 
 const InnerComponent = () => {
   const context = React.useContext(SpotifyAuthContext); 
@@ -20,7 +20,7 @@ describe("SpotifyAuthProvider", () => {
     })
 
     it("Should render with empty token when one is not found", () => {
-      (getSpotifyAuthToken as jest.Mock).mockReturnValueOnce(undefined);
+      (spotifyAuth.getToken as jest.Mock).mockReturnValueOnce(undefined);
       const { getByTestId } = render(<SpotifyAuthProvider handleRedirect={mockRedirect}><InnerComponent /></SpotifyAuthProvider>);
       // Act
       // Assert
@@ -29,7 +29,7 @@ describe("SpotifyAuthProvider", () => {
 
     it("Should call redirect with valid spotify URL when a token is not set", () => {
       // Arrange
-      (getSpotifyAuthToken as jest.Mock).mockReturnValueOnce(undefined);
+      (spotifyAuth.getToken as jest.Mock).mockReturnValueOnce(undefined);
       render(<SpotifyAuthProvider handleRedirect={mockRedirect} />);
       // Act
       // Assert
@@ -37,7 +37,7 @@ describe("SpotifyAuthProvider", () => {
     });
 
     it("Should render with valid", () => {
-      (getSpotifyAuthToken as jest.Mock).mockReturnValueOnce('XXXXX');
+      (spotifyAuth.getToken as jest.Mock).mockReturnValueOnce('XXXXX');
       const { getByTestId } = render(<SpotifyAuthProvider handleRedirect={mockRedirect}><InnerComponent /></SpotifyAuthProvider>);
       // Act
       // Assert

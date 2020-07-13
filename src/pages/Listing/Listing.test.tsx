@@ -4,8 +4,19 @@ import { render, fireEvent, wait } from "@testing-library/react";
 import useFetchSpotifySearch from "../../hooks/useFetchSpotifySearch";
 import { Track } from "../../types/spotifyTrack";
 
+const mockHistoryPush = jest.fn();
+
 jest.useFakeTimers();
 jest.mock("../../hooks/useFetchSpotifySearch");
+
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    push: mockHistoryPush,
+    location: {
+      search: '?searchTerm=test'
+    }
+  }),
+}));
 
 (useFetchSpotifySearch as jest.Mock).mockImplementation(() => ({
   data: []
@@ -78,5 +89,18 @@ describe("Listing", () => {
     expect(getByTestId('search-list-item-' + mockTrack.id + '-name')).toHaveTextContent(mockTrack.name);
     expect(getByAltText(mockTrack.name + ' cover image')).toBeInTheDocument();
     expect(getByAltText(mockTrack.name + ' cover image')).toHaveAttribute('src', mockTrack.cover_art);
+  });
+
+  it("Should navigate to track on click", async () => {
+    // Arrange
+    (useFetchSpotifySearch as jest.Mock).mockImplementation(() => ({
+      data: [mockTrack]
+    }));
+    const { getByTestId } = render(<Listing />);
+    // Act
+    fireEvent.click(getByTestId('search-list-item-' + mockTrack.id));
+    await wait();
+    // Assert
+    expect(mockHistoryPush).toHaveBeenCalledWith("/tracks/" + mockTrack.id + "?searchTerm=test");
   });
 });

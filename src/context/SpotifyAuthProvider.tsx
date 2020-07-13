@@ -1,5 +1,5 @@
 import React from "react";
-import getSpotifyAuthToken from "../utils/getSpotifyAuthToken";
+import spotifyAuth from "../utils/spotifyAuth";
 import SpotifyAuthContext from "./SpotifyAuthContext";
 import { CLIENT_ID, REDIRECT_URL, SCOPES } from "../config";
 
@@ -10,7 +10,7 @@ interface SpotifyAuthProviderProps {
 
 const SpotifyAuthProvider: React.SFC<SpotifyAuthProviderProps> = ({ children, handleRedirect }) => {
 
-  const token = getSpotifyAuthToken();
+  const token = spotifyAuth.getToken();
 
   // If no token is set, call redirect prop
   if (!token) {
