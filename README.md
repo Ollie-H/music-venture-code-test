@@ -7,15 +7,24 @@ For the write up on the technical decisions & process please see [./TECHNICAL_WR
 
 ### Getting started
 
-#### Contributing
-
-If developing locally you should install the node module depencies to your host to allow for better developer experience locally.
-
 Requirements:
 * Node >= 8.10 and npm >= 5.6
+* A spotify account
 
 Steps:
 * [ ] Clone project `git clone git@github.com:Ollie-H/music-venture-code-test.git`
 * [ ] Build project `yarn install`
 * [ ] Start project `yarn run start`
 * [ ] Navigate to http://localhost:3000
+* [ ] On initial startup you will be redirected to a spotify login to authorise the application (You will require a spotify account to authenticate)
+
+### Other useful commands
+
+* Run tests - `yarn run test:watch`
+* Run linting - `yarn run lint`
+* Build app - `yarn run build`
+
+
+### CI
+
+CI tasks are ran in a github actions workflow, config can be found in [/.github/workflows/build-branch.yml](/.github/workflows/build-branch.yml)

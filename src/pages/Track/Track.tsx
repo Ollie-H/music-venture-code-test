@@ -15,7 +15,7 @@ const Track: React.SFC = () => {
 
 
   if (searchFetch.loading) {
-    return (<div style={{textAlign: "center"}}>
+    return (<div style={{textAlign: "center", marginTop: '200px'}}>
       <Spin  />
     </div>)
   };
@@ -33,8 +33,8 @@ const Track: React.SFC = () => {
           <Col xs={20} md={16} lg={12}>
             <Breadcrumb>
             <Breadcrumb.Item href="" onClick={(e) => {
-                e.preventDefault();
-                history.push('/tracks'+window.location.search);
+              e.preventDefault();
+              history.push('/tracks'+window.location.search);
             }} data-testid="track-back-button">
               <ArrowLeftOutlined />
               <span>Back</span>

@@ -6,6 +6,7 @@ describe("mapSearchToTracks", () => {
     const track = mapSearchToTracks({
       tracks: {
         items: [{
+          id: '1',
           'name': 'Track 1',
           'artists': [{
             name: 'artist 1'
@@ -21,7 +22,7 @@ describe("mapSearchToTracks", () => {
     })
     // Act
     // Assert
-    expect(track[0]).toEqual({"artist": "artist 1", "cover_art": "http://someimge", "duration_ms": 10, "name": "Track 1"})
+    expect(track[0]).toEqual({"id": "1", "artist": "artist 1", "cover_art": "http://someimge", "duration_ms": 10, "name": "Track 1"})
   });
 
   it("Should return valid mapped data for multiple artists", () => {
@@ -29,6 +30,7 @@ describe("mapSearchToTracks", () => {
     const track = mapSearchToTracks({
       tracks: {
         items: [{
+          id: '1',
           'name': 'Track 1',
           'artists': [{
             name: 'artist 1'
@@ -46,6 +48,6 @@ describe("mapSearchToTracks", () => {
     })
     // Act
     // Assert
-    expect(track[0]).toEqual({"artist": "artist 1, artist 2", "cover_art": "http://someimge", "duration_ms": 10, "name": "Track 1"})
+    expect(track[0]).toEqual({"id": "1", "artist": "artist 1, artist 2", "cover_art": "http://someimge", "duration_ms": 10, "name": "Track 1"})
   });
 });
