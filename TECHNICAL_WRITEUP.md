@@ -40,5 +40,5 @@ Private repo has been created here: https://github.com/Ollie-H/music-venture-cod
 
 * CI/CD - I would look to dockerise the application with either a node server or an niginx proxy to allow the application to be deployable to any docker env and allow the routes to work once deployed.
 * Re-evaluate data fetching approach and validate open source, fully featured alternatives such as SWR. This would allow features such as cache and request cancellation out of the box.
-* Improve test coverage - I have looked to cover the most important areas as unit tests, but the integration between spotify is untested so some kind of e2e tests covering behaviour would improve confidence
+* Improve test coverage - I have looked to cover the most important areas as unit tests, but the integration between spotify is untested so some kind of e2e tests covering behaviour would improve confidence. Edge/fail cases are also fairly untested so would look to spend some time there looking at that.
 * Improve UI fidelity - I have mainly used the out of the box antd components which I hadn't used before, so I would want to spend a bit more time learning how to theme and improve spacing consistency.
